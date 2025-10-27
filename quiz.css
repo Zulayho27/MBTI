@@ -1,15 +1,10 @@
-/* quiz.css */
 
-/* Мы делаем тело страницы "гибким", чтобы
-   прижать footer к низу экрана, даже если контента мало.
-*/
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* Контейнер квиза занимает все доступное пространство */
 .quiz-container {
     flex-grow: 1;
     display: flex;
@@ -23,15 +18,12 @@ body {
     text-align: center;
 }
 
-/* Анимация появления для вопроса.
-   Мы будем добавлять/убирать класс 'visible'
-*/
 #question-text {
     font-family: var(--font-body);
     font-size: 1.8rem;
     font-weight: 300;
     color: #fff;
-    min-height: 150px; /* Резервируем место, чтобы кнопки не "прыгали" */
+    min-height: 150px; 
     margin-bottom: 2rem;
     opacity: 0;
     transform: translateY(20px);
@@ -66,11 +58,11 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
     margin-top: 0.5rem;
-    overflow: hidden; /* Важно для border-radius */
+    overflow: hidden;
 }
 
 .progress-bar {
-    width: 0%; /* Начинаем с 0, будем менять JS-ом */
+    width: 0%;
     height: 100%;
     background: var(--color-glow-lime);
     box-shadow: 0 0 10px var(--color-glow-lime), 
@@ -79,11 +71,9 @@ body {
     transition: width 0.5s ease-out;
 }
 
-
-/* --- Кнопки ответов --- */
 .answer-options {
     display: flex;
-    flex-wrap: wrap; /* Позволяет кнопкам переноситься на моб. */
+    flex-wrap: wrap; 
     justify-content: center;
     gap: 1rem;
     width: 100%;
@@ -102,44 +92,40 @@ body {
     padding: 0.8rem 1.2rem;
     border-radius: 50px;
     
-    min-width: 150px; /* Чтобы кнопки были примерно одной ширины */
+    min-width: 150px; 
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-/* Магия наведения: используем разные неоновые цвета 
-   для разных кнопок, чтобы показать "шкалу"
-*/
 .answer-btn:hover {
     transform: scale(1.05) translateY(-2px);
     color: #fff;
 }
 
-/* "Полностью не согласен" (Красный) */
 .answer-btn[data-value="-2"]:hover {
     border-color: #ff4757;
     box-shadow: 0 0 10px #ff4757;
     text-shadow: 0 0 5px #ff4757;
 }
-/* "Не согласен" (Оранжевый) */
+
 .answer-btn[data-value="-1"]:hover {
     border-color: #ff7f50;
     box-shadow: 0 0 10px #ff7f50;
     text-shadow: 0 0 5px #ff7f50;
 }
-/* "Нейтрально" (Белый) */
+
 .answer-btn[data-value="0"]:hover {
     border-color: #fff;
     box-shadow: 0 0 10px #fff;
     text-shadow: 0 0 5px #fff;
 }
-/* "Согласен" (Голубой) */
+
 .answer-btn[data-value="1"]:hover {
     border-color: var(--color-glow-cyan);
     box-shadow: 0 0 10px var(--color-glow-cyan);
     text-shadow: 0 0 5px var(--color-glow-cyan);
 }
-/* "Полностью согласен" (Лаймовый) */
+
 .answer-btn[data-value="2"]:hover {
     border-color: var(--color-glow-lime);
     box-shadow: 0 0 10px var(--color-glow-lime);
@@ -147,10 +133,10 @@ body {
 }
 
 
-/* Футер, прижатый к низу */
+
 .quiz-footer {
     width: 100%;
-    margin-top: auto; /* Это прижимает его к низу */
+    margin-top: auto; 
     text-align: center;
     padding: 2rem 0;
     font-size: 0.9rem;
@@ -159,7 +145,7 @@ body {
 }
 .quiz-nav {
     display: flex;
-    justify-content: center; /* Кнопка "Назад" будет по центру */
+    justify-content: center; 
     width: 100%;
     margin-top: 2rem;
 }
@@ -190,7 +176,6 @@ body {
     text-shadow: 0 0 5px var(--color-glow-cyan);
 }
 
-/* Стиль для неактивной кнопки "Назад" (на 1-м вопросе) */
 .nav-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
@@ -201,7 +186,7 @@ body {
     color: var(--color-text-secondary);
 }
 
-/* Стиль для "выбранного" ответа */
+
 .answer-btn.selected {
     color: #fff;
     border-color: var(--color-glow-lime);
@@ -213,30 +198,18 @@ body {
 @media (max-width: 768px) {
     
     .answer-options {
-        /* 1. Меняем направление с 'row' (по умолчанию) на 'column' */
         flex-direction: column;
         
-        /* 2. Выравниваем наши кнопки-колонки по центру */
         align-items: center; 
-        
-        /* 3. Можно немного уменьшить отступ между ними в стеке */
+
         gap: 0.75rem; 
     }
 
     .answer-btn {
-        /* 4. ГЛАВНОЕ: Делаем кнопки на 100% ширины 
-           контейнера. Это сделает их большими и легкими для нажатия.
-        */
         width: 100%; 
-        
-        /* 5. Убираем ограничение 'min-width', которое нам мешало */
         min-width: auto; 
-        
-        /* (Можно даже увеличить шрифт для читаемости) */
-        /* font-size: 1rem; */
     }
 
-    /* Мы также можем немного 'прижать' кнопку "Назад" */
     .quiz-nav {
         margin-top: 1rem;
     }

@@ -1,4 +1,4 @@
-/* results.css */
+
 
 body {
     display: flex;
@@ -12,7 +12,7 @@ body {
     padding: 2rem;
     width: 90%;
     
-    /* Стеклянная карточка для всего профиля */
+
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -28,13 +28,13 @@ body {
     padding-bottom: 2rem;
 }
 
-/* Огромный 4-буквенный код */
+
 #type-code {
     font-family: var(--font-heading);
     font-size: 5rem;
     margin-bottom: 0;
     color: #fff;
-    /* Глитч-анимация (из style.css) будет применена */
+
 }
 
 #type-title {
@@ -53,13 +53,12 @@ body {
     letter-spacing: 2px;
 }
 
-/* --- Стили Неоновых Табов --- */
 .tab-nav {
     display: flex;
     justify-content: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 2rem;
-    flex-wrap: wrap; /* Для мобильных */
+    flex-wrap: wrap; 
 }
 
 .tab-btn {
@@ -81,26 +80,26 @@ body {
     background: rgba(255, 255, 255, 0.05);
 }
 
-/* Активная вкладка */
+
 .tab-btn.active {
     color: var(--color-glow-magenta);
     text-shadow: 0 0 5px var(--color-glow-magenta);
     border-bottom: 3px solid var(--color-glow-magenta);
 }
 
-/* --- Контент Табов --- */
+
 .tab-content {
     line-height: 1.8;
     color: var(--color-text);
 }
 
-/* Скрываем все панели... */
+
 .tab-pane {
     display: none;
     animation: fadeIn 0.5s ease;
 }
 
-/* ...кроме активной */
+
 .tab-pane.active {
     display: block;
 }
@@ -132,7 +131,7 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Адаптивность для CTA-кнопки */
+
 .results-container .cta-section {
     padding: 0;
     margin-top: 2rem;

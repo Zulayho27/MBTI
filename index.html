@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
+<html lang="ru"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Декодируй Свой Разум | MBTI Кибер-Призма</title>
@@ -8,13 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <a href="index.html" class="logo">Inuri</a>
+    
+    <div class="lang-switcher">
+        <button id="lang-ru" class="lang-btn active">RU</button>
+        <button id="lang-en" class="lang-btn">EN</button>
+        <button id="lang-uz" class="lang-btn">UZ</button>
+    </div>
+
     <header class="hero">
         <div class="container">
-            <h1 class="glitch" data-text="Декодируй Свой Разум">
+            <h1 class="glitch" data-text="Декодируй Свой Разум" data-key="heroTitle">
                 Декодируй Свой Разум
             </h1>
-            <p class="subtitle">
+            <p class="subtitle" data-key="heroSubtitle">
                 MBTI — это не просто тест. Это ключ к пониманию твоего
                 внутреннего "кода" и операционной системы.
             </p>
@@ -22,19 +29,16 @@
     </header>
 
     <main class="container">
-
         <section class="intro" id="what-is-mbti">
-            <h2><span class="neon-highlight">Что такое MBTI?</span></h2>
-            
-            <p>
-                Индикатор типов Майерс-Бриггс (MBTI) — это широко известная психологическая модель, основанная на работах Карла Густава Юнга. Разработанная Изабель Майерс и Катариной Бриггс, эта система не "ставит диагноз" и не измеряет "навыки".
+            <h2 data-key="introTitle"><span class="neon-highlight">Что такое MBTI?</span></h2>
+            <p data-key="introP1">
+                Индикатор типов Майерс-Бриггс (MBTI)... (текст будет заменен)
             </p>
-            <p>
-                Ее главная цель — определить ваши врожденные **предпочтения**. 
-                Точно так же, как вы от рождения предпочитаете писать правой или левой рукой, ваш мозг предпочитает определенные способы сбора информации и принятия решений.
+            <p data-key="introP2">
+                Ее главная цель — определить ваши врожденные... (текст будет заменен)
             </p>
-            <p class="important-note">
-                Ключевой момент: <strong>Нет "лучших" или "худших" типов.</strong> Каждый из 16 "архитектур" личности обладает уникальными сильными сторонами и потенциальными "слепыми зонами". Понимание своего типа — это инструмент для саморазвития, улучшения коммуникации и построения более гармоничных отношений.
+            <p class="important-note" data-key="introP3">
+                Ключевой момент: <strong>Нет "лучших" или "худших" типов.</strong>... (текст будет заменен)
             </p>
         </section>
 
@@ -43,52 +47,52 @@
                 
                 <div class="card" data-tilt style="--card-glow-color: #00ffff;">
                     <div class="card-content">
-                        <h3><span class="type-e">Экстраверсия (E)</span> / <span class="type-i">Интроверсия (I)</span></h3>
-                        <p class="label">Ключевой вопрос: Источник Энергии</p>
-                        <p>
-                            <b>(E) Экстраверты</b> черпают энергию из внешнего мира. Они "заряжаются" от социального взаимодействия, активной деятельности и обсуждений. Они часто "думают вслух".
+                        <h3 data-key="card1Title">Экстраверсия (E) / Интроверсия (I)</h3>
+                        <p class="label" data-key="card1Label">Ключевой вопрос: Источник Энергии</p>
+                        <p data-key="card1TextE">
+                            <b>(E) Экстраверты</b>... (текст будет заменен)
                         </p>
-                        <p>
-                            <b>(I) Интроверты</b> восполняют энергию изнутри. Они "заряжаются" в одиночестве, через размышления и глубокое погружение в свои мысли. Они предпочитают сначала подумать, потом сказать.
+                        <p data-key="card1TextI">
+                            <b>(I) Интроверты</b>... (текст будет заменен)
                         </p>
                     </div>
                 </div>
 
                 <div class="card" data-tilt style="--card-glow-color: #ff00ff;">
                     <div class="card-content">
-                        <h3><span class="type-s">Сенсорика (S)</span> / <span class="type-n">Интуиция (N)</span></h3>
-                        <p class="label">Ключевой вопрос: Сбор Информации</p>
-                        <p>
-                            <b>(S) Сенсорики</b> доверяют тому, что можно увидеть, услышать и потрогать. Они сфокусированы на фактах, деталях, практическом опыте и настоящем моменте.
+                        <h3 data-key="card2Title">Сенсорика (S) / Интуиция (N)</h3>
+                        <p class="label" data-key="card2Label">Ключевой вопрос: Сбор Информации</p>
+                        <p data-key="card2TextS">
+                            <b>(S) Сенсорики</b>... (текст будет заменен)
                         </p>
-                        <p>
-                            <b>(N) Интуиты</b> доверяют "шестому чувству" и общей картине. Они сфокусированы на паттернах, возможностях, будущих последствиях и скрытых смыслах.
+                        <p data-key="card2TextN">
+                            <b>(N) Интуиты</b>... (текст будет заменен)
                         </p>
                     </div>
                 </div>
 
                 <div class="card" data-tilt style="--card-glow-color: #f7ff00;">
                     <div class="card-content">
-                        <h3><span class="type-t">Логика (T)</span> / <span class="type-f">Эмоции (F)</span></h3>
-                        <p class="label">Ключевой вопрос: Принятие Решений</p>
-                        <p>
-                            <b>(T) Логики</b> (Мышление) принимают решения на основе объективного анализа, справедливости и логических последствий. Они ценят истину выше тактичности.
+                        <h3 data-key="card3Title">Логика (T) / Эмоции (F)</h3>
+                        <p class="label" data-key="card3Label">Ключевой вопрос: Принятие Решений</p>
+                        <p data-key="card3TextT">
+                            <b>(T) Логики</b>... (текст будет заменен)
                         </p>
-                        <p>
-                            <b>(F) Этики</b> (Чувство) принимают решения, основываясь на личных ценностях, эмпатии и том, как выбор повлияет на людей. Они ценят гармонию и тактичность.
+                        <p data-key="card3TextF">
+                            <b>(F) Этики</b>... (текст будет заменен)
                         </p>
                     </div>
                 </div>
 
                 <div class="card" data-tilt style="--card-glow-color: #00ff00;">
                     <div class="card-content">
-                        <h3><span class="type-j">Суждение (J)</span> / <span class="type-p">Восприятие (P)</span></h3>
-                        <p class="label">Ключевой вопрос: Образ Жизни</p>
-                        <p>
-                            <b>(J) Судящие</b> предпочитают структурированный и спланированный мир. Им нравится порядок, предсказуемость, и они получают удовольствие от "закрытия" задач.
+                        <h3 data-key="card4Title">Суждение (J) / Восприятие (P)</h3>
+                        <p class="label" data-key="card4Label">Ключевой вопрос: Образ Жизни</p>
+                        <p data-key="card4TextJ">
+                            <b>(J) Судящие</b>... (текст будет заменен)
                         </p>
-                        <p>
-                            <b>(P) Воспринимающие</b> предпочитают гибкий и спонтанный подход. Им нравится адаптироваться к новым обстоятельствам, исследовать варианты и оставлять задачи "открытыми".
+                        <p data-key="card4TextP">
+                            <b>(P) Воспринимающие</b>... (текст будет заменен)
                         </p>
                     </div>
                 </div>
@@ -97,20 +101,22 @@
         </section>
 
         <section class="cta-section">
-            <h2>Готов к анализу?</h2>
-            <p>Узнай свой 4-буквенный тип и получи полный отчет.</p>
-            <a href="./quiz.html" class="cta-button">Начать Сканирование</a>
+            <h2 data-key="ctaTitle">Готов к анализу?</h2>
+            <p data-key="ctaText">Узнай свой 4-буквенный тип и получи полный отчет.</p>
+            <a href="quiz.html" class="cta-button" data-key="ctaButton">Начать Сканирование</a>
         </section>
 
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 WebDevMaster and Inuri // v1.1</p>
+            <p>&copy; 2025 Inuri and WebDevMaster// v2.1</p>
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    
+    <script src="localization.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
