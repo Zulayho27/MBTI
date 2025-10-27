@@ -1,0 +1,139 @@
+/* results.css */
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.results-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    width: 90%;
+    
+    /* Стеклянная карточка для всего профиля */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    padding-bottom: 2rem;
+}
+
+/* Огромный 4-буквенный код */
+#type-code {
+    font-family: var(--font-heading);
+    font-size: 5rem;
+    margin-bottom: 0;
+    color: #fff;
+    /* Глитч-анимация (из style.css) будет применена */
+}
+
+#type-title {
+    font-family: var(--font-body);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-glow-cyan);
+    text-shadow: 0 0 10px var(--color-glow-cyan);
+}
+
+.type-group-label {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--color-glow-lime);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- Стили Неоновых Табов --- */
+.tab-nav {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 2rem;
+    flex-wrap: wrap; /* Для мобильных */
+}
+
+.tab-btn {
+    font-family: var(--font-heading);
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Активная вкладка */
+.tab-btn.active {
+    color: var(--color-glow-magenta);
+    text-shadow: 0 0 5px var(--color-glow-magenta);
+    border-bottom: 3px solid var(--color-glow-magenta);
+}
+
+/* --- Контент Табов --- */
+.tab-content {
+    line-height: 1.8;
+    color: var(--color-text);
+}
+
+/* Скрываем все панели... */
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+/* ...кроме активной */
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-pane h3 {
+    font-family: var(--font-heading);
+    color: var(--color-glow-lime);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.tab-pane ul, .tab-pane ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.results-footer {
+    width: 100%;
+    margin-top: auto;
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.9rem;
+    color: #555;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Адаптивность для CTA-кнопки */
+.results-container .cta-section {
+    padding: 0;
+    margin-top: 2rem;
+}

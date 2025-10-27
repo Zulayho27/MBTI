@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ваш Профиль | MBTI Кибер-Призма</title>
+    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="results.css"> <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="index.html" class="logo">Inuri</a>
+    <div class="results-container">
+        
+        <header class="profile-header">
+            <h1 id="type-code" class="glitch" data-text="ЗАГРУЗКА">ЗАГРУЗКА</h1>
+            <h2 id="type-title" class="neon-highlight">...</h2>
+            <p id="type-group" class="type-group-label">...</p>
+        </header>
+
+        <nav class="tab-nav">
+            <button class="tab-btn active" data-tab="overview">Обзор</button>
+            <button class="tab-btn" data-tab="strengths">Сильные & Слабые стороны</button>
+            <button class="tab-btn" data-tab="relations">Отношения</button>
+            <button class="tab-btn" data-tab="career">Карьера</button>
+        </nav>
+
+        <main class="tab-content">
+            
+            <div id="overview" class="tab-pane active">
+                <p>Загрузка данных профиля...</p>
+            </div>
+            
+            <div id="strengths" class="tab-pane">
+                <p>Анализ сильных и слабых сторон...</p>
+            </div>
+            
+            <div id="relations" class="tab-pane">
+                <p>Расчет матрицы совместимости...</p>
+            </div>
+
+            <div id="career" class="tab-pane">
+                <p>Сканирование карьерных векторов...</p>
+            </div>
+
+        </main>
+
+        <section class="cta-section">
+            <a href="quiz.html" class="cta-button">Пройти сканирование заново</a>
+        </section>
+
+    </div>
+
+    <footer class="results-footer">
+        <div class="container">
+            <p>&copy; 2025 WebDevMaster. Архив "Кибер-Призма".</p>
+        </div>
+    </footer>
+
+    <script src="results.js"></script>
+</body>
+</html>

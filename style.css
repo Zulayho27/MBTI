@@ -1,0 +1,339 @@
+/* style.css */
+
+/* --- Переменные и Глобальные стили --- */
+:root {
+    --color-bg: #0d0518; /* Глубокий фиолетово-черный */
+    --color-text: #e0e0e0;
+    --color-text-secondary: #a0a0c0;
+    
+    /* Неоновые акценты */
+    --color-glow-cyan: #00ffff;
+    --color-glow-magenta: #ff00ff;
+    --color-glow-lime: #00ff00;
+    --color-glow-yellow: #f7ff00;
+
+    --font-heading: 'Orbitron', sans-serif; /* Футуристичный шрифт */
+    --font-body: 'Roboto', sans-serif;
+    --border-radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.7;
+    overflow-x: hidden; /* Предотвращаем горизонтальный скролл */
+}
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--color-glow-magenta);
+    text-shadow: 0 0 5px var(--color-glow-magenta),
+                 0 0 10px var(--color-glow-magenta),
+                 0 0 15px rgba(var(--color-glow-magenta), 0.5);
+    
+    /* === ИЗМЕНЕНИЯ ЗДЕСЬ === */
+    
+    /* 1. Делаем его "приклеенным" к экрану */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    /* 2. Растягиваем на всю ширину */
+    width: 100%;
+    
+    /* 3. Добавляем "стеклянный" фон */
+    padding: 1rem 2rem; /* Сделаем чуть компактнее */
+    background: rgba(13, 5, 24, 0.85); /* Фон из var(--color-bg) с прозрачностью */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    transition: text-shadow 0.3s ease;
+}
+
+.logo:hover {
+    text-shadow: 0 0 10px var(--color-glow-magenta),
+                 0 0 20px var(--color-glow-magenta),
+                 0 0 30px rgba(var(--color-glow-magenta), 1);
+}
+
+/* 4. ТЕПЕРЬ МЫ ДОЛЖНЫ "ПОДВИНУТЬ" ВЕСЬ КОНТЕНТ ВНИЗ,
+   чтобы он не прятался под новой шапкой.
+   Найдите ваш 'body' в style.css и добавьте 'padding-top' 
+*/
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.7;
+    overflow-x: hidden;
+    padding-top: 4.5rem; /* 👈 ДОБАВЬТЕ ЭТУ СТРОКУ (1rem*2 (padding) + 1.5rem (font-size) ~= 4.5rem) */
+}
+
+
+/* --- Адаптация для мобильных (ОЧЕНЬ ВАЖНО) --- */
+@media (max-width: 768px) {
+    /* 5. На мобильных отменяем 'fixed' и 'padding-top' */
+    body {
+        padding-top: 0; /* 👈 ДОБАВЬТЕ ЭТУ СТРОКУ */
+    }
+
+    .logo {
+        position: relative; /* Возвращаем в поток */
+        width: auto; /* Убираем 100% ширину */
+        background: transparent; /* Убираем фон */
+        backdrop-filter: none;
+        border-bottom: none;
+        display: block;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    /* На странице квиза лого будет над HUD */
+    .quiz-hud {
+        top: auto !important; /* !important, чтобы перебить 'top: 4.5rem' */
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.neon-highlight {
+    color: var(--color-glow-cyan);
+    text-shadow: 0 0 5px var(--color-glow-cyan), 
+                 0 0 10px var(--color-glow-cyan);
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--color-text-secondary);
+}
+
+/* --- Hero Секция --- */
+.hero {
+    padding: 6rem 0;
+    text-align: center;
+}
+
+.hero .subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--color-text-secondary);
+}
+
+/* --- Эффект "Глитч" для заголовка --- */
+.glitch {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: #fff;
+    position: relative;
+    animation: glitch-anim 2.5s infinite steps(2, end);
+    text-shadow: 0 0 5px var(--color-glow-magenta), 
+                 0 0 10px var(--color-glow-magenta),
+                 0 0 15px var(--color-glow-cyan);
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-bg);
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--color-glow-magenta);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--color-glow-cyan);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+
+/* --- Ключевые кадры для Глитча --- */
+@keyframes glitch-anim {
+    0% { clip: rect(42px, 9999px, 44px, 0); }
+    /* ... (сокращено для краткости) ... */
+    100% { clip: rect(42px, 9999px, 44px, 0); }
+}
+@keyframes glitch-anim-2 {
+    0% { clip: rect(65px, 9999px, 119px, 0); }
+    /* ... (сокращено для краткости) ... */
+    100% { clip: rect(65px, 9999px, 119px, 0); }
+}
+
+
+/* --- Секции контента --- */
+.intro, .dichotomies, .cta-section {
+    padding: 3rem 0;
+}
+
+.intro {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* --- Сетка Дихотомий "4 в ряд" --- */
+.grid-container-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+/* --- Дизайн Карточек (Glassmorphism + Neon) --- */
+.card {
+    /* 1. Эффект "Стекла" (Glassmorphism) */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* 2. Неоновое Свечение (из переменной --card-glow-color) */
+    box-shadow: 0 0 10px rgba(var(--card-glow-color), 0.3),
+                0 0 20px rgba(var(--card-glow-color), 0.2);
+    
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    
+    /* 3. Подготовка к 3D Tilt */
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    transition: transform 0.1s ease, box-shadow 0.3s ease;
+    
+    /* 4. Анимация пульсации */
+    animation: pulse-glow 3s infinite alternate;
+}
+
+/* --card-glow-color используется здесь */
+@keyframes pulse-glow {
+    from {
+        box-shadow: 0 0 10px rgba(var(--card-glow-color), 0.3),
+                    0 0 20px rgba(var(--card-glow-color), 0.2);
+    }
+    to {
+        box-shadow: 0 0 15px rgba(var(--card-glow-color), 0.5),
+                    0 0 30px rgba(var(--card-glow-color), 0.3);
+    }
+}
+
+.card:hover {
+    transform: scale(1.02); /* Легкое увеличение в дополнение к 3D */
+}
+
+.card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.card .label {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--color-glow-cyan);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Цвета для типов */
+.type-e { color: var(--color-glow-magenta); }
+.type-i { color: var(--color-glow-cyan); }
+.type-s { color: var(--color-glow-lime); }
+.type-n { color: var(--color-glow-yellow); }
+/* ... и т.д. ... */
+
+
+/* --- Секция CTA (Призыв к действию) --- */
+.cta-section {
+    text-align: center;
+    padding: 3rem;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--color-glow-lime);
+    border: 2px solid var(--color-glow-lime);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-shadow: 0 0 10px var(--color-glow-lime);
+    box-shadow: 0 0 15px rgba(var(--color-glow-lime), 0.5),
+                inset 0 0 10px rgba(var(--color-glow-lime), 0.3);
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--color-glow-lime);
+    color: var(--color-bg);
+    text-shadow: none;
+    box-shadow: 0 0 25px var(--color-glow-lime);
+    transform: scale(1.05) translateY(-3px);
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #555;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- Адаптивность (Очень важно для 4 колонок!) --- */
+
+/* Планшеты: перестраиваем в 2 колонки */
+@media (max-width: 1200px) {
+    .glitch {
+        font-size: 3rem;
+    }
+    .grid-container-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Мобильные: перестраиваем в 1 колонку */
+@media (max-width: 768px) {
+    .glitch {
+        font-size: 2.5rem;
+    }
+    .grid-container-4 {
+        grid-template-columns: 1fr;
+    }
+}
