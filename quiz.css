@@ -209,3 +209,39 @@ body {
     text-shadow: 0 0 5px var(--color-glow-lime);
     background: rgba(var(--color-glow-lime-rgb), 0.1); 
 }
+
+@media (max-width: 768px) {
+    
+    .answer-options {
+        /* 1. Меняем направление с 'row' (по умолчанию) на 'column' */
+        flex-direction: column;
+        
+        /* 2. Выравниваем наши кнопки-колонки по центру */
+        align-items: center; 
+        
+        /* 3. Можно немного уменьшить отступ между ними в стеке */
+        gap: 0.75rem; 
+    }
+
+    .answer-btn {
+        /* 4. ГЛАВНОЕ: Делаем кнопки на 100% ширины 
+           контейнера. Это сделает их большими и легкими для нажатия.
+        */
+        width: 100%; 
+        
+        /* 5. Убираем ограничение 'min-width', которое нам мешало */
+        min-width: auto; 
+        
+        /* (Можно даже увеличить шрифт для читаемости) */
+        /* font-size: 1rem; */
+    }
+
+    /* Мы также можем немного 'прижать' кнопку "Назад" */
+    .quiz-nav {
+        margin-top: 1rem;
+    }
+
+    .nav-btn {
+        width: 100%;
+    }
+}
