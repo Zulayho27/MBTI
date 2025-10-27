@@ -1,9 +1,7 @@
-// quiz.js
+// quiz.js (v4.1 - Безопасная версия с кнопкой "Назад")
 
 // --- 1. БАЗА ДАННЫХ ВОПРОСОВ ---
-// Вы можете легко добавить сюда еще 50+ вопросов,
-// просто скопировав и вставив структуру объекта.
-
+// (40 вопросов, как мы и договорились)
 const questions = [
     // --- БЛОК 1 ---
     {
@@ -26,7 +24,7 @@ const questions = [
         dichotomy: 'J/P',
         direction: 1 // +J
     },
-
+    
     // --- БЛОК 2 ---
     {
         text: "Вам часто нужно провести время в одиночестве, чтобы 'перезарядиться'.",
@@ -224,7 +222,8 @@ const questions = [
         dichotomy: 'J/P',
         direction: -1 // +P
     }
-]
+];
+
 
 // --- 2. НАСТРОЙКИ КВИЗА ---
 const answerLabels = [
@@ -234,27 +233,21 @@ const answerLabels = [
     "Согласен",
     "Полностью согласен"
 ];
-
-// Значения, которые мы будем ПРИБАВЛЯТЬ к шкале
-// "Полностью не согласен" -> -2
-// "Полностью согласен" -> +2
 const answerValues = [-2, -1, 0, 1, 2];
 
 
 // --- 3. ПЕРЕМЕННЫЕ СОСТОЯНИЯ ---
 let currentQuestionIndex = 0;
-let userAnswers = {
-    'E/I': 0,
-    'S/N': 0,
-    'T/F': 0,
-    'J/P': 0
-};
+// Создаем "лог" ответов.
+const answerHistory = new Array(questions.length).fill(null);
+
 
 // --- 4. DOM-ЭЛЕМЕНТЫ (Ссылки на HTML) ---
 const questionTextEl = document.getElementById('question-text');
 const answerOptionsEl = document.getElementById('answer-options');
 const questionCounterEl = document.getElementById('question-counter');
 const progressBarEl = document.getElementById('progress-bar');
+const backBtn = document.getElementById('back-btn'); // Кнопка "Назад"
 
 
 // --- 5. ОСНОВНЫЕ ФУНКЦИИ ---
@@ -273,54 +266,97 @@ function renderQuestion() {
     setTimeout(() => {
         // 4. Обновляем текст
         questionTextEl.textContent = question.text;
-
+        
         // 5. Очищаем старые кнопки
         answerOptionsEl.innerHTML = '';
 
-        // 6. Создаем новые кнопки
+        // 6. Создаем новые кнопки (с учетом истории)
+        const storedValue = answerHistory[currentQuestionIndex]; // Получаем сохраненный ответ
+
         answerLabels.forEach((label, index) => {
             const value = answerValues[index];
             const button = document.createElement('button');
             button.classList.add('answer-btn');
             button.textContent = label;
             button.setAttribute('data-value', value);
-
+            
+            // Проверяем, был ли этот ответ выбран ранее
+            if (storedValue !== null && storedValue === value) {
+                button.classList.add('selected');
+            }
+            
             // Добавляем обработчик клика
-            button.addEventListener('click', () => handleAnswerClick(question, value));
-
+            button.addEventListener('click', (e) => handleAnswerClick(e, value));
+            
             answerOptionsEl.appendChild(button);
         });
 
-        // 7. Обновляем HUD
+        // 7. Обновляем HUD (Прогресс-бар считает ОТВЕТЫ)
         questionCounterEl.textContent = `Вопрос ${currentQuestionIndex + 1} из ${questions.length}`;
-        const progressPercent = ((currentQuestionIndex) / questions.length) * 100;
+        const answeredCount = answerHistory.filter(val => val !== null).length;
+        const progressPercent = (answeredCount / questions.length) * 100;
         progressBarEl.style.width = `${progressPercent}%`;
 
         // 8. Плавно "показываем" новый вопрос
         questionTextEl.classList.add('visible');
+
+        // 9. ⭐️ ИСПРАВЛЕНИЕ 1: Добавлена проверка, существует ли backBtn
+        if (backBtn) {
+            if (currentQuestionIndex === 0) {
+                backBtn.disabled = true;
+            } else {
+                backBtn.disabled = false;
+            }
+        }
 
     }, 400); // Эта задержка должна совпадать с 'transition' в CSS
 }
 
 /**
  * Функция, которая срабатывает при клике на ответ
+ * (Параметр 'question' удален, так как он не использовался)
  */
-function handleAnswerClick(question, value) {
-    // 1. Рассчитываем балл
-    // 'direction' (1 или -1) умножается на 'value' (-2 до 2)
-    const score = value * question.direction;
+function handleAnswerClick(e, value) {
+    // 1. Записываем ответ в наш "лог"
+    answerHistory[currentQuestionIndex] = value;
+    
+    // 2. Визуально "выделяем" нажатую кнопку
+    const buttons = answerOptionsEl.querySelectorAll('.answer-btn');
+    buttons.forEach(btn => btn.classList.remove('selected'));
+    e.target.classList.add('selected');
 
-    // 2. Записываем балл в нужную дихотомию
-    userAnswers[question.dichotomy] += score;
+    // 3. Обновляем прогресс-бар немедленно
+    const answeredCount = answerHistory.filter(val => val !== null).length;
+    const progressPercent = (answeredCount / questions.length) * 100;
+    progressBarEl.style.width = `${progressPercent}%`;
 
-    // 3. Переходим к следующему вопросу
-    currentQuestionIndex++;
+    // 4. Авто-переход к следующему вопросу (с задержкой)
+    setTimeout(() => {
+        currentQuestionIndex++;
+        // 5. Проверяем, не закончился ли тест
+        if (currentQuestionIndex < questions.length) {
+            renderQuestion(); // Показываем следующий вопрос
+        } else {
+            // Если ответили на последний вопрос, проверяем, все ли отвечено
+            if (answeredCount === questions.length) {
+                calculateResult();
+            } else {
+                // Если есть пропуски (из-за кнопки "Назад")
+                alert("Вы пропустили один или несколько вопросов. Мы вернем вас к первому пропущенному.");
+                currentQuestionIndex = answerHistory.indexOf(null);
+                renderQuestion();
+            }
+        }
+    }, 250); // Небольшая задержка, чтобы юзер увидел нажатие
+}
 
-    // 4. Проверяем, не закончился ли тест
-    if (currentQuestionIndex < questions.length) {
-        renderQuestion(); // Показываем следующий вопрос
-    } else {
-        calculateResult(); // Считаем результат
+/**
+ * Новая функция для кнопки "Назад"
+ */
+function handleBackClick() {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        renderQuestion();
     }
 }
 
@@ -328,28 +364,49 @@ function handleAnswerClick(question, value) {
  * Функция для подсчета и переадресации
  */
 function calculateResult() {
-    // 1. Показываем финальное состояние прогресс-бара
+    // 1. Показываем финальное состояние прогресс-бара и сообщение
     progressBarEl.style.width = `100%`;
     questionTextEl.textContent = 'Анализ завершен. Генерация вашего профиля...';
     answerOptionsEl.innerHTML = ''; // Убираем кнопки
+    
+    // 2. ⭐️ ИСПРАВЛЕНИЕ 2: Добавлена проверка, существует ли backBtn
+    if (backBtn) {
+        backBtn.style.display = 'none'; // Прячем кнопку "Назад"
+    }
 
-    // 2. Определяем 4 буквы
-    const typeE_I = userAnswers['E/I'] > 0 ? 'E' : 'I';
-    const typeS_N = userAnswers['S/N'] > 0 ? 'S' : 'N';
-    const typeT_F = userAnswers['T/F'] > 0 ? 'T' : 'F';
-    const typeJ_P = userAnswers['J/P'] > 0 ? 'J' : 'P';
+    // 3. Инициализируем объект для финальных очков
+    let finalScores = {
+        'E/I': 0,
+        'S/N': 0,
+        'T/F': 0,
+        'J/P': 0
+    };
 
+    // 4. Проходим по всему "логу" ответов и считаем очки
+    for (let i = 0; i < questions.length; i++) {
+        const question = questions[i];
+        const value = answerHistory[i];
+
+        // Мы уже проверили, что все отвечено, но 'value' может быть 0
+        if (value !== null) { 
+            const score = value * question.direction;
+            finalScores[question.dichotomy] += score;
+        }
+    }
+
+    // 5. Определяем 4 буквы
+    const typeE_I = finalScores['E/I'] >= 0 ? 'E' : 'I'; 
+    const typeS_N = finalScores['S/N'] >= 0 ? 'S' : 'N';
+    const typeT_F = finalScores['T/F'] >= 0 ? 'T' : 'F';
+    const typeJ_P = finalScores['J/P'] >= 0 ? 'J' : 'P'; 
+    
     const finalType = `${typeE_I}${typeS_N}${typeT_F}${typeJ_P}`;
 
-    // 3. Переадресация на страницу результатов
-    // Мы передаем тип прямо в URL (GET-параметр)
+    // 6. Переадресация на страницу результатов
     console.log(`Финальный тип: ${finalType}`);
-    console.log('Результаты подсчета:', userAnswers);
+    console.log('Результаты подсчета:', finalScores);
 
-    // Устанавливаем задержку, чтобы пользователь успел прочитать "Анализ завершен"
     setTimeout(() => {
-        // !!! ВАЖНО: У нас пока нет страницы 'results.html',
-        // !!! но мы уже делаем переадресацию на нее.
         window.location.href = `results.html?type=${finalType}`;
     }, 2000); // Ждем 2 секунды
 }
@@ -357,4 +414,10 @@ function calculateResult() {
 
 // --- 6. ЗАПУСК КВИЗА ---
 // Отображаем первый вопрос, как только страница загрузится
-document.addEventListener('DOMContentLoaded', renderQuestion);
+document.addEventListener('DOMContentLoaded', () => {
+    // Проверяем, что кнопка "Назад" существует, прежде чем вешать обработчик
+    if (backBtn) {
+        backBtn.addEventListener('click', handleBackClick);
+    }
+    renderQuestion();
+});

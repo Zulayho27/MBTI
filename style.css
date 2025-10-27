@@ -11,7 +11,7 @@
     --color-glow-magenta: #ff00ff;
     --color-glow-lime: #00ff00;
     --color-glow-yellow: #f7ff00;
-
+    --color-glow-lime-rgb: 0, 255, 0;
     --font-heading: 'Orbitron', sans-serif; /* Футуристичный шрифт */
     --font-body: 'Roboto', sans-serif;
     --border-radius: 12px;

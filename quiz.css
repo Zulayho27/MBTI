@@ -157,3 +157,55 @@ body {
     color: #555;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+.quiz-nav {
+    display: flex;
+    justify-content: center; /* Кнопка "Назад" будет по центру */
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.nav-btn {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid var(--color-text-secondary);
+    color: var(--color-text-secondary);
+    
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    
+    min-width: 150px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    transform: scale(1.05) translateY(-2px);
+    color: #fff;
+    border-color: var(--color-glow-cyan);
+    box-shadow: 0 0 10px var(--color-glow-cyan);
+    text-shadow: 0 0 5px var(--color-glow-cyan);
+}
+
+/* Стиль для неактивной кнопки "Назад" (на 1-м вопросе) */
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    text-shadow: none;
+    border-color: var(--color-text-secondary);
+    color: var(--color-text-secondary);
+}
+
+/* Стиль для "выбранного" ответа */
+.answer-btn.selected {
+    color: #fff;
+    border-color: var(--color-glow-lime);
+    box-shadow: 0 0 10px var(--color-glow-lime);
+    text-shadow: 0 0 5px var(--color-glow-lime);
+    background: rgba(var(--color-glow-lime-rgb), 0.1); 
+}
