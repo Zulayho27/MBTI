@@ -5,28 +5,28 @@ const translations = {
         "heroSubtitle": "MBTI isn't just a test. It's the key to understanding your inner 'code' and operating system.",
 
         // Intro Секция
-        "introTitle": "<span class='neon-highlight'>What is MBTI?</span>", // 👈 ИСПРАВЛЕНО
+        "introTitle": "<span class='neon-highlight'>What is MBTI?</span>", 
         "introP1": "The Myers-Briggs Type Indicator (MBTI) is a widely known psychological model based on the work of Carl Gustav Jung. Developed by Isabel Myers and Katharine Briggs, this system does not 'diagnose' or measure 'skills'.",
         "introP2": "Its main goal is to identify your innate **preferences**. Just as you are naturally right- or left-handed, your brain preferscertain ways of gathering information and making decisions.",
         "introP3": "Key takeaway: <strong>There are no 'better' or 'worse' types.</strong> Each of the 16 personality 'architectures' has unique strengths and potential 'blind spots'. Understanding your type is a tool for self-development and improving communication.",
 
         // Карточки Дихотомий
-        "card1Title": "<span class='type-e'>Extraversion (E)</span> / <span class='type-i'>Introversion (I)</span>", // 👈 ИСПРАВЛЕНО
+        "card1Title": "<span class='type-e'>Extraversion (E)</span> / <span class='type-i'>Introversion (I)</span>", 
         "card1Label": "Key Question: Source of Energy",
         "card1TextE": "<b>(E) Extroverts</b> draw energy from the outer world. They 'recharge' through social interaction, activity, and discussion. They often 'think out loud'.",
         "card1TextI": "<b>(I) Introverts</b> replenish energy from within. They 'recharge' in solitude, through reflection and deep thought. They prefer to think first, then speak.",
 
-        "card2Title": "<span class='type-s'>Sensing (S)</span> / <span class='type-n'>Intuition (N)</span>", // 👈 ИСПРАВЛЕНО
+        "card2Title": "<span class='type-s'>Sensing (S)</span> / <span class='type-n'>Intuition (N)</span>", 
         "card2Label": "Key Question: Gathering Information",
         "card2TextS": "<b>(S) Sensors</b> trust what they can see, hear, and touch. They are focused on facts, details, practical experience, and the present moment.",
         "card2TextN": "<b>(N) Intuitives</b> trust their 'sixth sense' and the big picture. They are focused on patterns, possibilities, future implications, and hidden meanings.",
 
-        "card3Title": "<span class='type-t'>Thinking (T)</span> / <span class='type-f'>Feeling (F)</span>", // 👈 ИСПРАВЛЕНО
+        "card3Title": "<span class='type-t'>Thinking (T)</span> / <span class='type-f'>Feeling (F)</span>", 
         "card3Label": "Key Question: Making Decisions",
         "card3TextT": "<b>(T) Thinkers</b> make decisions based on objective analysis, fairness, and logical consequences. They value truth over tact.",
         "card3TextF": "<b>(F) Feelers</b> base their choices on personal values, empathy, and how the decision will affect people. They value harmony and tact.",
 
-        "card4Title": "<span class='type-j'>Judging (J)</span> / <span class='type-p'>Perceiving (P)</span>", // 👈 ИСПРАВЛЕНО
+        "card4Title": "<span class='type-j'>Judging (J)</span> / <span class='type-p'>Perceiving (P)</span>", 
         "card4Label": "Key Question: Lifestyle",
         "card4TextJ": "<b>(J) Judgers</b> prefer a structured and planned world. They like order, predictability, and enjoy 'closing' tasks.",
         "card4TextP": "<b>(P) Perceivers</b> prefer a flexible and spontaneous approach. They enjoy adapting to new circumstances, exploring options, and keeping tasks 'open'.",

@@ -250,6 +250,10 @@ p {
 .type-i { color: var(--color-glow-cyan); }
 .type-s { color: var(--color-glow-lime); }
 .type-n { color: var(--color-glow-yellow); }
+.type-f { color: var(--color-glow-magenta); }
+.type-t { color: var(--color-glow-cyan); }
+.type-p { color: var(--color-glow-lime); }
+.type-j { color: var(--color-glow-yellow); }
 
 .cta-section {
     text-align: center;
